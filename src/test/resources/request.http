@@ -1,0 +1,133 @@
+
+### получить список всех пользователей(только админ может)
+GET http://localhost:8080/users.getAll?limit=50&offset=0
+X-Login: admin
+X-Password:top-secret
+
+### регистрация нового пользователя
+GET http://localhost:8080/users.register?login=masha&password=zvezda
+
+### получить информацию о себе(может любой)
+GET http://localhost:8080/users.me
+X-Login: igor
+X-Password: secret
+
+### для анонимного пользователя
+GET http://localhost:8080/users.me
+
+### админ может удалить любого, пользователь только себя
+GET http://localhost:8080/users.removeById?id=2
+X-Login: igor
+X-Password: secret
+
+### восстановить может только админ
+GET http://localhost:8080/users.restoreById?id=2
+X-Login: admin
+X-Password: top-secret
+
+
+
+
+### получить список продуктов(может любой)
+GET http://localhost:8080/products.getAll?limit=50&offset=0
+
+### получить конкретный продукт(может любой)
+GET http://localhost:8080/products.getById?id=1
+
+### создать новый продукт(только админ)
+GET http://localhost:8080/products.create?category=sneakers&name=SALOMON&description=aggresive protector&price=7000&size=45&manufacturer=camboja&photo=salomon.png
+X-Login: admin
+X-Password: top-secret
+
+### обновить продукт(только админ)
+GET http://localhost:8080/products.update?id=4&category=sneakers&name=Salomon&description=for winter running&price=6000&size=43&manufacturer=Thailand&photo=salomon.png
+X-Login: admin
+X-Password: top-secret
+
+### удалить продукт(может только админ)
+GET http://localhost:8080/products.removeById?id=2
+X-Login: admin
+X-Password: top-secret
+
+### восстановить продукт(может только админ)
+GET http://localhost:8080/products.restoreById?id=2
+X-Login: admin
+X-Password: top-secret
+
+### получить список всех удаленных продуктов(может только админ)
+GET http://localhost:8080/products.getAllRemoved?limit=50&offset=0
+X-Login: admin
+X-Password: top-secret
+
+### найти нужный продукт
+GET http://localhost:8080/products.search?query=active&language=english&limit=50&offset=0
+
+
+
+
+### подгружаем картинку(кроссовки)
+POST http://localhost:8080/media/upload-data
+Content-Type: image/png
+
+< ./sneakers.png
+
+### посмотреть картинку(кроссовки)
+GET http://localhost:8080/36a7557e-ce1e-4a67-be95-fa571d12ab18.png
+
+### подгружаем картинку(штаны)
+POST http://localhost:8080/media/upload-data
+Content-Type: image/png
+
+< ./trousers.png
+
+### посмотреть картинку(штаны)
+GET http://localhost:8080/9543b07b-6ccb-4420-bcbf-4f5f67477bf8.png
+
+### подгружаем картинку(куртка)
+POST http://localhost:8080/media/upload-data
+Content-Type: image/png
+
+< ./jacket.png
+
+### посмотреть картинку(куртка)
+GET http://localhost:8080/c185ecc7-2abd-409d-99af-a63f8a765b34.png
+
+
+
+
+### совершить покупку
+GET http://localhost:8080/purchases.make?productId=1&qty=1
+
+### совершить покупку(анонимный пользователь)
+GET http://localhost:8080/purchases.make?productId=1&qty=1
+
+
+### список покупок(для админа)
+GET http://localhost:8080/purchases.getAll?limit=50&offset=0
+X-Login: admin
+X-Password: top-secret
+
+### статистика(только админ)
+GET http://localhost:8080/purchases.stats
+X-Login: admin
+X-Password: top-secret
+
+
+
+
+### добавить комментарий(обычный пользователь, админ)
+GET http://localhost:8080/reviews.makeReview?productId=1&comment=blablabla
+X-Login: igor
+X-Password: secret
+
+### добавить комментарий(анонимный пользователь)
+GET http://localhost:8080/reviews.makeReview?productId=1&comment=blablabla
+
+### посмотреть все комментарии о продукте(может любой)
+GET http://localhost:8080/reviews.getAll?limit=40&offset=0
+
+###
+GET http://localhost:8080/reviews.removeById?id=7
+X-Login: admin
+X-Password: top-secret
+
